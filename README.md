@@ -25,98 +25,69 @@ Test the C Program for the desired output.
 
 ## C Program to create new process using Linux API system calls fork() and getpid() , getppid() and to print process ID and parent Process ID using Linux API system calls
 
-```c
-#include<stdio.h>
-#include<sys/wait.h>
-#include<unistd.h>
-int main()
-{
-    int pid = fork();
-    if(pid == 0)
-    {
-        printf("I am child my PID is %d\n",getpid());
-        printf("My parent PID is %d\n",getpid());
-        sleep(2);
-    }
-    else
-    {
-        printf("I am parent,my PID is %d\n",getpid());
-        wait(NULL);
-    }
-    return 0;
-}
-```
-
-
-
-
-
-
-
-
-
-
-
+      #include <stdio.h>
+      #include <sys/types.h>
+      #include <unistd.h>
+      int main(void)
+      {	//variable to store calling function's process id
+      	pid_t process_id;
+      	//variable to store parent function's process id
+      	pid_t p_process_id;
+      	//getpid() - will return process id of calling function
+      	process_id = getpid();
+      	//getppid() - will return process id of parent function
+      	p_process_id = getppid();
+      	//printing the process ids
+      
+      //printing the process ids
+      	printf("The process id: %d\n",process_id);
+      	printf("The process id of parent function: %d\n",p_process_id);
+      	return 0; }
 
 ## OUTPUT
-![Alt](img/file2.png)
 
-
-
-
-
+![373935538-6dffb9f6-4fb8-4202-ac89-89b35803df0f](https://github.com/user-attachments/assets/dd5f1387-8868-4b53-9eba-e0b387abe5a1)
 
 
 ## C Program to execute Linux system commands using Linux API system calls exec() , exit() , wait() family
 
-```c
-#include<stdio.h>
-#include<stdlib.h>
-#include<sys/types.h>
-#include<sys/wait.h>
-#include<unistd.h>
-int main(){
-    int status;
-    printf("Running ps with execl\n");
-    if (fork() == 0) {
-        execlp("ps","ps","-f",NULL);
-        perror("execl failed");
-        exit(1);
-    }
-}
-```
+        #include <stdio.h>
+        #include<stdlib.h>
+        int main()
+        { int pid; 
+        pid=fork(); 
+        if(pid == 0) ![373935582-66153550-2e6b-42cd-b96b-b7579d2c43c2](https://github.com/user-attachments/assets/83b14904-c155-41c7-ae9d-e36a3f566ad0)
+
+        { printf("Iam child my pid is %d\n",getpid()); 
+        printf("My parent pid is:%d\n",getppid()); 
+        exit(0); } 
+        else{ 
+        printf("I am parent, my pid is %d\n",getpid()); 
+        sleep(100); 
+        exit(0);} 
+        }
+
+## OUTPUT
+![373935564-4fa7b882-4a81-4933-9f31-0d57535d10eb](https://github.com/user-attachments/assets/cf774538-9112-449c-975e-29b85d420c79)
+
+
+        #include <unistd.h>
+        #include <stdio.h>
+        #include <stdlib.h>
+        int main()
+        {
+        	printf("Running ps with execlp\n");
+        	execlp("ps", "ps", "ax", NULL);
+        	printf("Done.\n");
+        	exit(0);
+        }
+
+
+## OUTPUT
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-##OUTPUT
-![cd](img/file1.png)
-
-
-
-
-
+![373935582-66153550-2e6b-42cd-b96b-b7579d2c43c2](https://github.com/user-attachments/assets/62213560-8be4-4458-9323-25c319373027)
 
 
 
